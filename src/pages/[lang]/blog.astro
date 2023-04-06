@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost from '../../components/BlogPost.astro';
+
+import { getCollection } from 'astro:content';
+import { languages } from '../../i18n/ui';
+
+const { lang } = Astro.params;
+const posts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true && data.lang == lang;
+});
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => {
+    return { params: { lang } };
+  });
+}
+---
+
+<Layout title="Blog">
+  <div>
+    <h1>Blog</h1>
+    <div>
+      {posts.map((post) => (
+        <BlogPost
+          key={post.slug}
+          title={post.data.title}
+          date={post.data.date}
+          slug={post.slug}
+        />
+      ))}
+    </div>
+  </div>
+</Layout>

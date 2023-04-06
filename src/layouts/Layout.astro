@@ -1,13 +1,19 @@
 ---
+import Navbar from '../components/NavBar.astro';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
 export interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -16,9 +22,16 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+  	<Navbar />
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<LanguagePicker />
+		</footer>
 	</body>
 </html>
+
 <style is:global>
 	:root {
 		--accent: 124, 58, 237;
@@ -27,6 +40,21 @@ const { title } = Astro.props;
 	html {
 		font-family: system-ui, sans-serif;
 		background-color: #F6F6F6;
+	}
+	body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		margin: 0;
+	}
+	main {
+		margin: 0 auto;
+		padding: 2rem;
+		max-width: 960px;
+	}
+	nav {
+		background-color: #333;
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
