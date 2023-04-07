@@ -2,7 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
 import TimeConversion from '../../components/24to12.svelte';
-import TimeConversionHourOnly from '../../components/24to12hourOnly.svelte';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -10,7 +9,6 @@ import TimeConversionHourOnly from '../../components/24to12hourOnly.svelte';
 		<h2>Conversion 24h vers 12h <span class="text-gradient">avec</span> les minutes</h2>
 		<TimeConversion client:only="svelte"/>
 		<h2>Conversion 24h vers 12h <span class="text-gradient">sans</span> les minutes</h2>
-		<TimeConversionHourOnly client:only="svelte"/>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
