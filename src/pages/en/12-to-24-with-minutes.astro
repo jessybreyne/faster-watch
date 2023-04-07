@@ -1,34 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
+import TimeConversion from '../../components/12to24withMinutes.svelte';
 ---
 
-<Layout title="Apprendre à lire l'heure plus rapidement">
+<Layout title="Welcome to Astro.">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Faster Watch</span></h1>
+		<h2>Conversion <span class="text-gradient">12h vers 24h</span> avec les minutes</h2>
+		<TimeConversion client:only="svelte"/>
 		<p class="instructions">
-			Ce site vous aidera à apprendre à lire l'heure sur une montre grâce à des exercices interactifs et des articles de blog.
+			To get started, open the directory <code>src/pages</code> in your project.<br />
+			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
-		<div>
-			<h2>Découvrez les fonctionnalités du site :</h2>
-		</div>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="/en/12-to-24"
-				title="12 to 24"
-				body="Apprendre à lire l'heure rapidement"
-			/>
-			<Card
-				href="/en/24-to-12"
-				title="24 to 12"
-				body="Apprendre à lire l'heure rapidement"
-			/>
-			<Card
-				href="/en/blog"
-				title="Blog"
-				body="Articles de blog"
-			/>
-		</ul>
 	</main>
 </Layout>
 
@@ -42,6 +25,9 @@ import Card from '../../components/Card.astro';
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
+	}
+	h2 {
+		text-align: center;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);

@@ -1,23 +1,9 @@
 import { defineConfig } from 'astro/config';
-
 import mdx from "@astrojs/mdx";
+
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
-  collections: [
-    {
-      route: '/:lang/blog/:slug',
-      template: './src/pages/[lang]/blog.astro',
-      sources: [
-        {
-          type: 'filesystem',
-          options: {
-            path: './src/content/blog/{lang}/*.md',
-            lang: ['en', 'fr'],
-          },
-        },
-      ],
-    },
-  ],
+  integrations: [mdx(), svelte()],
 });

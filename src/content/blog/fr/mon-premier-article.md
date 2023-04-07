@@ -2,7 +2,7 @@
 title: Mon premier article
 date: 2023-04-01
 lang: fr
-slug: top-du-top
+author: Jean
 ---
 
 # Mon premier article
