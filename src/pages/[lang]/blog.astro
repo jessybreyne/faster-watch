@@ -6,8 +6,15 @@ import { getCollection } from 'astro:content';
 import { languages } from '../../i18n/ui';
 
 const { lang } = Astro.params;
-const posts = await getCollection('blog', ({ data }) => {
-  return data.draft !== true;
+const posts = await getCollection('blog', ({ id, data }) => {
+  return data.draft !== true && id.startsWith(lang + '/');
+});
+
+const urlPrefix = '/' + lang + '/blog/';
+
+const formattedPosts = posts.map((post) => {
+  const url = urlPrefix + post.slug.replace(lang + '/', '');
+  return { ...post, url };
 });
 
 export function getStaticPaths() {
@@ -21,12 +28,12 @@ export function getStaticPaths() {
   <div>
     <h1>Blog</h1>
     <div>
-      {posts.map((post) => (
+      {formattedPosts.map((post) => (
         <BlogPost
           key={post.slug}
           title={post.data.title}
           date={post.data.date}
-          slug={post.slug}
+          slug={post.url}
         />
       ))}
     </div>
