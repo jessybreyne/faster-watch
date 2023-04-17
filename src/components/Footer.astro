@@ -1,0 +1,29 @@
+---
+// Footer.astro
+import LanguagePicker from './LanguagePicker.astro';
+---
+
+<style>
+  footer {
+    background-color: black;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    border-top: 2px solid white;
+  }
+
+  .footer-content {
+    margin-bottom: 10px;
+  }
+</style>
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; Fater Watch - Tous droits réservés.</p>
+  </div>
+  <LanguagePicker />
+</footer>

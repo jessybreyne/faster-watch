@@ -1,6 +1,33 @@
 ---
 import { languages } from '../i18n/ui';
 ---
+
+<style>
+  ul {
+    list-style-type: none;
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #fff;
+  }
+
+  a:hover {
+    background-color: #fff;
+    color: #333;
+  }
+</style>
+
 <ul>
   {Object.entries(languages).map(([lang, label]) => (
     <li>

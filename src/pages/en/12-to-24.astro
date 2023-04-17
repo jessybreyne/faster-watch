@@ -6,14 +6,13 @@ import TimeConversion from '../../components/12to24.svelte';
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h2>Conversion <span class="text-gradient">12h vers 24h</span></h2>
-		<p class="instructions">
-		<TimeConversion client:only="svelte"/>
-		</p>
-		<p class="instructions">
+		<h2>Conversion <span class="text-primary">12h vers 24h</span></h2>
+		<div class="exercice">
+			<TimeConversion url={Astro.url} client:only="svelte" />
+		</div>
+		<p>
 			Cet exercice aidera ceux qui n'ont pas l'habitude de lire l'heure analogique.<br />
 			<br />
-			<a href="/en/12-to-24-with-minutes">Accéder à l'exercice avec les minutes</a>
 		</p>
 	</main>
 </Layout>
@@ -31,13 +30,6 @@ import TimeConversion from '../../components/12to24.svelte';
 	}
 	h2 {
 		text-align: center;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
 	}
 	.instructions {
 		line-height: 1.6;
@@ -63,5 +55,8 @@ import TimeConversion from '../../components/12to24.svelte';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+	.exercice {
+		padding: 2rem 0;
 	}
 </style>

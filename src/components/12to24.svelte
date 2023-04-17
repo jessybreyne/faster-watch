@@ -1,5 +1,12 @@
 <!-- TimeConversion.svelte -->
 <script lang="ts">
+  export let url;
+
+  import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+  const lang = getLangFromUrl(url);
+  const t = useTranslations(lang);
+
   let hour24 = "";
   let userInput = "";
   let hour12 = "";
@@ -60,29 +67,30 @@
   input {
     width: 70px;
     height: 50px;
-    border-radius: 5px;
     box-shadow: none;
-    border: 1px solid #ced6e0;
+    border: 2px solid white;
     transition: all 0.3s ease-in-out;
     font-size: 18px;
     padding: 5px 15px;
     background: none;
-    color: #1a3b5d;
+    color: white;
     text-align: center;
   }
   input:focus {
     outline: none;
-    box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
+    border-color: var(--primary);
   }
   input:hover {
-    border-color: #3d9cff;
+    border-color: var(--primary-hover);
   }
-
   .error {
     color: red;
   }
   .success {
     color: green;
+  }
+  h3 {
+    font-size: 3rem;
   }
 </style>
 
@@ -97,8 +105,8 @@
     maxlength="2"
   />
   {#if success}
-    <p class="success">Success! Try another one.</p>
+    <p class="success">{t('success')}</p>
   {:else if error}
-    <p class="error">Incorrect! Please try again.</p>
+    <p class="error">{t('error')}</p>
   {/if}
 </div>
