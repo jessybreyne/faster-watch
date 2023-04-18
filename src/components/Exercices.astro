@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Card from './Card.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ul role="list" class="link-card-grid">
+	<Card
+		href={"/" + lang + "/12-to-24"}
+		title={t("exo.12-to-24")}
+		body={t("exo.12-to-24body")}
+	/>
+	<Card
+		href={"/" + lang + "/24-to-12"}
+		title={t("exo.24-to-12")}
+		body={t("exo.24-to-12body")}
+	/>
+</ul>
+
+<style>
+	.text-primary {
+		color: var(--primary);
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+		margin-top: 2rem;
+	}
+</style>

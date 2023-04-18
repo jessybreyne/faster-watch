@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Card from '../../components/Card.astro';
 import TimeConversion from '../../components/12to24.svelte';
 ---
 
@@ -10,7 +9,8 @@ import TimeConversion from '../../components/12to24.svelte';
 		<TimeConversion url={Astro.url} client:only="svelte" />
 	</div>
 	<p>
-		This exercise will help those who are not used to reading analog time.<br />
+		Cet exercice aidera ceux qui n'ont pas l'habitude de lire l'heure analogique.<br />
+		<br />
 	</p>
 </Layout>
 

@@ -5,15 +5,13 @@ import TimeConversion from '../../components/24to12.svelte';
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<h2>Conversion 24h vers 12h <span class="text-gradient">avec</span> les minutes</h2>
-		<TimeConversion client:only="svelte"/>
-		<h2>Conversion 24h vers 12h <span class="text-gradient">sans</span> les minutes</h2>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-	</main>
+	<h2>Conversion 24h vers 12h <span class="text-gradient">avec</span> les minutes</h2>
+	<TimeConversion client:only="svelte"/>
+	<h2>Conversion 24h vers 12h <span class="text-gradient">sans</span> les minutes</h2>
+	<p class="instructions">
+		To get started, open the directory <code>src/pages</code> in your project.<br />
+		<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+	</p>
 </Layout>
 
 <style>
