@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Clock from '../../components/Clock.svelte';
+import ClockExercise from '../../components/ClockExercise.svelte';
+---
+
+<Layout title="Welcome to Astro.">
+  <h2>Conversion <span class="text-primary">12h vers 24h</span></h2>
+  <div class="exercice">
+		<ClockExercise client:only="svelte" />
+  </div>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	h2 {
+		text-align: center;
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+	.exercice {
+		padding: 2rem 0;
+	}
+	p {
+		text-align: center;
+	}
+</style>
