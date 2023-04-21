@@ -108,9 +108,26 @@ let formatOptions = [
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
   }
   input {
-    width: 100px;
+    width: 70px;
+    height: 50px;
+    box-shadow: none;
+    border: 2px solid white;
+    transition: all 0.3s ease-in-out;
+    font-size: 18px;
+    padding: 5px 15px;
+    background: none;
+    color: white;
+    text-align: center;
+  }
+  input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  input:hover {
+    border-color: var(--primary-hover);
   }
   .success {
     color: green;
@@ -120,9 +137,19 @@ let formatOptions = [
   }
   button {
     margin-right: 0.5rem;
+    border: 2px solid white;
+    transition: all 0.3s ease-in-out;
+    padding: 5px 15px;
+    color: white;
+    background: none;
+    cursor: pointer;
+  }
+  button:hover {
+    color: black;
+    background: white;
   }
   .active {
-    background-color: #007bff;
+    background-color: var(--primary);
     color: white;
   }
 </style>
