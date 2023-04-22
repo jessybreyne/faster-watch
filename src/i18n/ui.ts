@@ -17,6 +17,8 @@ export const ui = {
     'exo.24-to-12-body': 'Flexibility exercise for the brain',
     'exo.clock': 'Clock exercise',
     'exo.clock-body': 'Training exercise with a clock',
+    'exo.clock-test': 'Clock test',
+    'exo.clock-test-body': 'Test exercise with a clock',
     'footer': 'Faster Watch - All rights reserved.',
   },
   fr: {
@@ -30,6 +32,8 @@ export const ui = {
     'exo.24-to-12-body': 'Exercice de flexibilité pour le cerveau',
     'exo.clock': 'Exercice de l\'horloge',
     'exo.clock-body': 'Exercice de lecture de l\'heure sur une horloge',
+    'exo.clock-test': 'Test de lecture de l\'heure sur une horloge',
+    'exo.clock-test-body': 'Test with a clock',
     'footer': 'Faster Watch - Tous droits réservés.',
   },
 } as const;

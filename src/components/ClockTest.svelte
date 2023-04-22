@@ -29,8 +29,6 @@ let formatOptions = [
   let message = '';
   let messageType = '';
   let randomTime = getRandomTime();
-  let amPm = '';
-  updateAmPm();
 
   function getRandomTime() {
     const hours = Math.floor(Math.random() * 24);
@@ -55,47 +53,24 @@ let formatOptions = [
     }
   }
 
-function checkAnswer() {
+  function checkAnswer() {
     const formattedTime = randomTime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
-    const [randomHours, randomMinutes] = formattedTime.split(':').map(Number);
-    let [inputHours, inputMinutes] = userInput.split(':').map(Number);
-
-    // Convertir 24h en 0h
-    if (inputHours === 24) {
-        inputHours = 0;
-    }
-
-    // Traiter 00:xx comme 24:xx si nécessaire
-    if (randomHours === 24 && inputHours === 0) {
-        inputHours = 24;
-    }
-
-    const hoursMatch = randomHours === inputHours;
-    const minutesDifference = Math.abs(randomMinutes - inputMinutes);
-    const minutesMatch = minutesDifference <= 3;
-
-    if (hoursMatch && minutesMatch) {
+    if (userInput === formattedTime) {
       message = 'Success';
       messageType = 'success';
       userInput = '';
       randomTime = getRandomTime(); // Génère une nouvelle heure aléatoire
-      updateAmPm();
     } else {
       message = 'Incorrect';
       messageType = 'error';
     }
-}
-
-  function updateAmPm() {
-    amPm = randomTime.getHours() >= 12 ? 'PM' : 'AM';
   }
-
-
 </script>
 
 <div class="container">
   <Clock time={randomTime} {format} showNumbers="{showNumbers}" />
-   <p class="ampm">{amPm}</p>
+  <!-- <Clock time={randomTime} format="12" showNumbers="{showNumbers}" />
+  <Clock time={randomTime} format="24" showNumbers="{showNumbers}" /> -->
   <input
     type="text"
     value="{userInput}"
@@ -176,10 +151,5 @@ function checkAnswer() {
   .active {
     background-color: var(--primary);
     color: white;
-  }
-  .ampm {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: -10px;
   }
 </style>

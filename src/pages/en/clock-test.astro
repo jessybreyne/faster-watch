@@ -1,13 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Clock from '../../components/Clock.svelte';
-import ClockExercise from '../../components/ClockExercise.svelte';
+import ClockTest from '../../components/ClockTest.svelte';
 ---
 
 <Layout title="Welcome to Astro.">
-  <h2>Test de lecture de l'heure <span class="text-primary">sur une horloge</span></h2>
+  <h2>Le test <span class="text-primary">sur 1 minute</span></h2>
   <div class="exercice">
-		<ClockExercise client:only="svelte" />
+		<ClockTest client:only="svelte" />
   </div>
 </Layout>
 
