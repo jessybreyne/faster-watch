@@ -15,12 +15,114 @@ export async function getStaticPaths() {
 
 const { lang, slug } = Astro.params;
 const page = Astro.props;
-const formattedDate = page.data.date.toLocaleString(lang);
+const formattedDate = page.data.date.toLocaleDateString(lang, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
 const { Content } = await page.render();
 ---
+
 <Layout title="Articles">
-  <h1>{page.data.title}</h1>
-  <p>by {page.data.author} • {formattedDate}</p>
-  <Content/>
+  <article class="article-container">
+    <h1>{page.data.title}</h1>
+    <p class="date">by {page.data.author} • {formattedDate}</p>
+    <div class="article-content">
+      <Content/>
+    </div>
+  </article>
 </Layout>
+
+<style is:global>
+  .article-container {
+    margin: 0 auto;
+    padding: 1rem;
+    line-height: 1.6;
+  }
+
+  .date {
+    margin: 1rem 0;
+  }
+
+  .article-container h1, .article-container h2, .article-container h3, .article-container h4, .article-container h5, .article-container h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-container p {
+    margin-bottom: 1.25rem;
+  }
+
+  .article-container a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .article-container a:hover {
+    color: var(--primary-hover);
+  }
+
+  .article-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem 0;
+  }
+
+  .article-container blockquote {
+    background-color: #f0f0f0;
+    border-left: 4px solid var(--primary);
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .article-container blockquote p {
+    margin: 0;
+  }
+
+  .article-container pre {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .article-container code {
+    font-family: "Courier New", monospace;
+  }
+
+  .article-container ul, .article-container ol {
+    padding-left: 2rem;
+    margin-bottom: 1.25rem;
+    list-style-position: inside;
+  }
+
+  .article-container ol {
+    padding-left: 2rem;
+    margin-bottom: 1.25rem;
+    list-style-position: inside;
+  }
+
+  .article-container ul ul, .article-container ul ol, .article-container ol ul, .article-container ol ol {
+    padding-left: 1rem;
+  }
+
+  .article-container li {
+    margin-bottom: 0.5rem;
+  }
+
+  .article-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+  }
+
+  .article-container table, .article-container th, .article-container td {
+    border: 1px solid #ccc;
+  }
+
+  .article-container th, .article-container td {
+    padding: 0.5rem;
+    text-align: left;
+  }
+</style>

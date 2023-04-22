@@ -14,7 +14,12 @@ const urlPrefix = '/' + lang + '/blog/';
 
 const formattedPosts = posts.map((post) => {
   const url = urlPrefix + post.slug.replace(lang + '/', '');
-  return { ...post, url };
+  const formattedDate = new Date(post.data.date).toLocaleDateString(lang, {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  return { ...post, url, formattedDate };
 });
 
 export function getStaticPaths() {
@@ -32,7 +37,7 @@ export function getStaticPaths() {
         <BlogPost
           key={post.slug}
           title={post.data.title}
-          date={post.data.date}
+          date={post.formattedDate}
           slug={post.url}
         />
       ))}
