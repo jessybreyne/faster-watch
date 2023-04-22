@@ -1,75 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 ---
+
+<script>
+  // Detecte la langue préférée de l'utilisateur et redirige vers /fr ou /en
+  const userLang = navigator.language;
+  if (userLang.startsWith('fr')) {
+    window.location.href = "/fr";
+  } else {
+    window.location.href = "/en";
+  }
+</script>
 
 <meta http-equiv="refresh" content="0;url=/en/" />
 
-<Layout title="Apprendre à lire l'heure plus rapidement">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Faster Watch</span></h1>
-		<p class="instructions">
-			Ce site vous aidera à apprendre à lire l'heure beaucoup plus rapidement grâce à des exercices interactifs et des articles de blog.
-		</p>
-		<div>
-			<h2>Découvrez les fonctionnalités du site :</h2>
-		</div>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="/learn"
-				title="Learn"
-				body="Apprendre à lire l'heure rapidement"
-			/>
-			<Card
-				href="/blog"
-				title="Blog"
-				body="Articles de blog"
-			/>
-		</ul>
-	</main>
+<Layout title="Redirection">
+  <main>
+    <h1>Redirection...</h1>
+    <p>Vous allez être redirigé vers la version de ce site adaptée à vos préférences linguistiques.</p>
+  </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  p {
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
 </style>

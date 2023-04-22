@@ -4,6 +4,19 @@ import BlogPost from '../../components/BlogPost.astro';
 
 import { getCollection } from 'astro:content';
 import { languages } from '../../i18n/ui';
+interface Post {
+  slug: string;
+  data: {
+    title: string;
+    date: string;
+    draft?: boolean;
+  };
+}
+
+interface FormattedPost extends Post {
+  url: string;
+  formattedDate: string;
+}
 
 const { lang } = Astro.params;
 const posts = await getCollection('blog', ({ id, data }) => {
@@ -20,7 +33,8 @@ const formattedPosts = posts.map((post) => {
     year: 'numeric',
   });
   return { ...post, url, formattedDate };
-});
+}).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()); // Trie les articles par date décroissante
+
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => {
