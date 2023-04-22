@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import TimeConversion from '../../components/24to12.svelte';
 ---
 
-<Layout title="Welcome to Astro.">
-	<h2>Conversion <span class="text-primary">24h vers 12h</span></h2>
+<Layout title="24h to 12h">
+	<h2>Conversion <span class="text-primary">24h to 12h</span></h2>
 	<div class="exercice">
 		<TimeConversion url={Astro.url} client:only="svelte" />
 	</div>
