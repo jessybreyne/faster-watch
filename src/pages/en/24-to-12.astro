@@ -1,16 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Card from '../../components/Card.astro';
 import TimeConversion from '../../components/24to12.svelte';
 ---
 
 <Layout title="Welcome to Astro.">
-	<h2>Conversion 24h vers 12h <span class="text-gradient">avec</span> les minutes</h2>
-	<TimeConversion client:only="svelte"/>
-	<h2>Conversion 24h vers 12h <span class="text-gradient">sans</span> les minutes</h2>
-	<p class="instructions">
-		To get started, open the directory <code>src/pages</code> in your project.<br />
-		<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+	<h2>Conversion <span class="text-primary">24h vers 12h</span></h2>
+	<div class="exercice">
+		<TimeConversion url={Astro.url} client:only="svelte" />
+	</div>
+	<p>
+		This exercise will help those who are not used to reading analog time.<br />
 	</p>
 </Layout>
 
@@ -28,36 +27,16 @@ import TimeConversion from '../../components/24to12.svelte';
 	h2 {
 		text-align: center;
 	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
 	.link-card-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+	.exercice {
+		padding: 2rem 0;
+	}
+	p {
+		text-align: center;
 	}
 </style>
