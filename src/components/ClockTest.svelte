@@ -29,6 +29,11 @@ let formatOptions = [
   let message = '';
   let messageType = '';
   let randomTime = getRandomTime();
+  let amPm = '';
+  updateAmPm();
+  let correctAnswers = 0;
+let timerActive = false;
+let timeRemaining = 60;
 
   function getRandomTime() {
     const hours = Math.floor(Math.random() * 24);
@@ -53,24 +58,68 @@ let formatOptions = [
     }
   }
 
-  function checkAnswer() {
+function checkAnswer() {
     const formattedTime = randomTime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
-    if (userInput === formattedTime) {
+    const [randomHours, randomMinutes] = formattedTime.split(':').map(Number);
+    let [inputHours, inputMinutes] = userInput.split(':').map(Number);
+
+    // Convertir 24h en 0h
+    if (inputHours === 24) {
+        inputHours = 0;
+    }
+
+    // Traiter 00:xx comme 24:xx si nécessaire
+    if (randomHours === 24 && inputHours === 0) {
+        inputHours = 24;
+    }
+
+    const hoursMatch = randomHours === inputHours;
+    const minutesDifference = Math.abs(randomMinutes - inputMinutes);
+    const minutesMatch = minutesDifference <= 3;
+
+    if (hoursMatch && minutesMatch) {
+      if (!timerActive) {
+      startTimer();
+    }
+    correctAnswers += 1;
       message = 'Success';
       messageType = 'success';
       userInput = '';
       randomTime = getRandomTime(); // Génère une nouvelle heure aléatoire
+      updateAmPm();
+
     } else {
       message = 'Incorrect';
       messageType = 'error';
     }
+}
+
+  function updateAmPm() {
+    amPm = randomTime.getHours() >= 12 ? 'PM' : 'AM';
   }
+
+  function startTimer() {
+  timerActive = true;
+  const timerInterval = setInterval(() => {
+    timeRemaining -= 1;
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      timerActive = false;
+      alert(`Le minuteur est terminé. Vous avez ${correctAnswers} bonnes réponses.`);
+      timeRemaining = 60;
+      correctAnswers = 0;
+    }
+  }, 1000);
+}
+
+
+
 </script>
 
 <div class="container">
+  <p class="timer">Temps restant : {timeRemaining}s</p>
   <Clock time={randomTime} {format} showNumbers="{showNumbers}" />
-  <!-- <Clock time={randomTime} format="12" showNumbers="{showNumbers}" />
-  <Clock time={randomTime} format="24" showNumbers="{showNumbers}" /> -->
+   <p class="ampm">{amPm}</p>
   <input
     type="text"
     value="{userInput}"
@@ -152,4 +201,14 @@ let formatOptions = [
     background-color: var(--primary);
     color: white;
   }
+  .ampm {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: -10px;
+  }
+  .timer {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
 </style>
